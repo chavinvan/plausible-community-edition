@@ -92,6 +92,18 @@ services:
     networks:
       - dokploy-network
       - plausible-network
+    lablabels:
+      - traefik.enable=true
+      - traefik.http.routers.blog-analytics-71a484-2-web.rule=Host(`analytics.chavinvan.com`)
+      - traefik.http.routers.blog-analytics-71a484-2-web.entrypoints=web
+      - traefik.http.services.blog-analytics-71a484-2-web.loadbalancer.server.port=80
+      - traefik.http.routers.blog-analytics-71a484-2-web.service=blog-analytics-71a484-2-web
+      - traefik.http.routers.blog-analytics-71a484-2-web.middlewares=redirect-to-https@file
+      - traefik.http.routers.blog-analytics-71a484-2-websecure.rule=Host(`analytics.chavinvan.com`)
+      - traefik.http.routers.blog-analytics-71a484-2-websecure.entrypoints=websecure
+      - traefik.http.services.blog-analytics-71a484-2-websecure.loadbalancer.server.port=80
+      - traefik.http.routers.blog-analytics-71a484-2-websecure.service=blog-analytics-71a484-2-websecure
+      - traefik.http.routers.blog-analytics-71a484-2-websecure.tls.certresolver=letsencrypt
      
 
 
