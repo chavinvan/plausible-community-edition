@@ -38,6 +38,8 @@ services:
   plausible:
     image: ghcr.io/plausible/community-edition:v2.1.4
     restart: always
+    port:
+      - 80
     command: sh -c "/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
     depends_on:
       plausible_db:
@@ -92,7 +94,7 @@ services:
     networks:
       - dokploy-network
       - plausible-network
-    lablabels:
+    labels:
       - traefik.enable=true
       - traefik.http.routers.blog-analytics-71a484-2-web.rule=Host(`analytics.chavinvan.com`)
       - traefik.http.routers.blog-analytics-71a484-2-web.entrypoints=web
