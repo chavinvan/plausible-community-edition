@@ -33,8 +33,6 @@ services:
       - dokploy-network
 
   plausible:
-    ports:
-      - 3000
     image: ghcr.io/plausible/community-edition:v2.1.4
     restart: always
     command: sh -c "/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
